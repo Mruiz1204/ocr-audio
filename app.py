@@ -11,23 +11,23 @@ from gtts import gTTS
 from googletrans import Translator
 
 
-# ---- Estilo personalizado: paleta beige / rosado / café 🤎🎀 ----
-st.set_page_config(page_title="OCR + Audio · Mari Reinoso", page_icon="🎀", layout="centered")
+# ---- Estilo personalizado: paleta azul petróleo + terracota (Miguel Ruiz) ----
+st.set_page_config(page_title="OCR + Audio · Miguel Ruiz", page_icon="📄", layout="centered")
 st.markdown(
     """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Inter:wght@300;400;600&display=swap');
     .stApp {
-        background: linear-gradient(135deg, #f7efe7 0%, #f3e3df 100%);
-        color: #5c4033;
-        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #1b3a4b 0%, #14303d 100%);
+        color: #e8eef0;
+        font-family: 'Inter', sans-serif;
     }
-    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; color: #7a5c52; }
-    section[data-testid="stSidebar"] { background: #f0d9d5; }
+    h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: #e07a5f; }
+    section[data-testid="stSidebar"] { background: #12272f; }
     .stButton>button {
-        background-color: #c98b8b; color: white; border-radius: 12px; border: none;
+        background-color: #e07a5f; color: #fff; border-radius: 10px; border: none; font-weight: 600;
     }
-    .stButton>button:hover { background-color: #a86e6e; color: #fff; }
+    .stButton>button:hover { background-color: #c9583c; color: #fff; }
     </style>
     """,
     unsafe_allow_html=True,
@@ -67,7 +67,7 @@ remove_files(7)
 
 
 st.title("Reconocimiento Óptico de Caracteres (OCR) 🔤🔊")
-st.caption("Lee texto de una imagen, tradúcelo y escúchalo en audio — por Mari Reinoso 🤎🎀")
+st.caption("Lee texto de una imagen, tradúcelo y escúchalo en audio — por Miguel Ruiz")
 st.subheader("Elige la fuente de la imagen: puede venir de la cámara o cargando un archivo")
 
 cam_ = st.checkbox("Usar Cámara")
@@ -78,7 +78,7 @@ else :
    img_file_buffer = None
    
 with st.sidebar:
-      st.markdown("<h2 style=\"font-family:'Great Vibes', cursive; color:#a86e6e;\">Mari Reinoso 🎀</h2>", unsafe_allow_html=True)
+      st.markdown("<h2 style=\"font-family:'Montserrat', sans-serif; color:#f2cc8f;\">Miguel Ruiz</h2>", unsafe_allow_html=True)
       st.subheader("Procesamiento para Cámara")
       filtro = st.radio("Filtro para imagen con cámara",('Sí', 'No'))
 
