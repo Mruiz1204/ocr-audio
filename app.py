@@ -12,7 +12,11 @@ from googletrans import Translator
 
 
 # ---- Estilo personalizado: paleta azul petróleo + terracota (Miguel Ruiz) ----
-st.set_page_config(page_title="OCR + Audio · Miguel Ruiz", page_icon="📄", layout="centered")
+try:
+    _icon = Image.open('logo_mr.png')
+except Exception:
+    _icon = "📄"
+st.set_page_config(page_title="OCR + Audio · Miguel Ruiz", page_icon=_icon, layout="centered")
 st.markdown(
     """
     <style>
@@ -22,12 +26,32 @@ st.markdown(
         color: #e8eef0;
         font-family: 'Inter', sans-serif;
     }
-    h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: #e07a5f; }
-    section[data-testid="stSidebar"] { background: #12272f; }
-    .stButton>button {
-        background-color: #e07a5f; color: #fff; border-radius: 10px; border: none; font-weight: 600;
+    .stApp, .stApp p, .stApp li, .stApp span, .stApp label,
+    .stMarkdown, [data-testid="stCaptionContainer"],
+    [data-testid="stWidgetLabel"], [data-testid="stWidgetLabel"] * {
+        color: #e8eef0 !important;
     }
-    .stButton>button:hover { background-color: #c9583c; color: #fff; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif !important; color: #e07a5f !important; }
+    .stTextInput input, .stTextArea textarea,
+    .stSelectbox div[data-baseweb="select"] > div, .stNumberInput input {
+        background-color: #f3f6f7 !important; color: #14303d !important;
+    }
+    input::placeholder, textarea::placeholder { color: #5c7079 !important; }
+    [data-testid="stNotification"] * { color: #14303d !important; }
+    section[data-testid="stSidebar"] { background: #12272f; }
+    section[data-testid="stSidebar"] * { color: #e8eef0 !important; }
+    section[data-testid="stSidebar"] h1,
+    section[data-testid="stSidebar"] h2,
+    section[data-testid="stSidebar"] h3 { color: #e07a5f !important; }
+    section[data-testid="stSidebar"] input,
+    section[data-testid="stSidebar"] textarea,
+    section[data-testid="stSidebar"] div[data-baseweb="select"] > div {
+        background-color: #f3f6f7 !important; color: #14303d !important;
+    }
+    .stButton>button {
+        background-color: #e07a5f; color: #fff !important; border-radius: 10px; border: none; font-weight: 600;
+    }
+    .stButton>button:hover { background-color: #c9583c; color: #fff !important; }
     </style>
     """,
     unsafe_allow_html=True,
