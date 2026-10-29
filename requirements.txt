@@ -1,8 +1,6 @@
 streamlit
 gTTS
-googletrans==4.0.0rc1
-httpx==0.13.3
-streamlit-webrtc
+deep-translator
 numpy
 opencv-python-headless
 pytesseract

@@ -8,7 +8,7 @@ import numpy as np
 import pytesseract
 from PIL import Image
 from gtts import gTTS
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 
 
 # ---- Estilo personalizado: paleta azul petróleo + terracota (Miguel Ruiz) ----
@@ -61,8 +61,7 @@ st.markdown(
 text = " "
 
 def text_to_speech(input_language, output_language, text, tld):
-    translation = translator.translate(text, src=input_language, dest=output_language)
-    trans_text = translation.text
+    trans_text = GoogleTranslator(source=input_language, target=output_language).translate(text)
     tts = gTTS(trans_text, lang=output_language, tld=tld, slow=False)
     try:
         my_file_name = text[0:20]
@@ -146,8 +145,7 @@ with st.sidebar:
       except:
           pass
       #st.title("Text to speech")
-      translator = Translator()
-      
+
       #text = st.text_input("Enter text")
       in_lang = st.selectbox(
           "Seleccione el lenguaje de entrada",
