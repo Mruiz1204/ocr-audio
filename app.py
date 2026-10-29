@@ -11,7 +11,30 @@ from gtts import gTTS
 from googletrans import Translator
 
 
-text=" "
+# ---- Estilo personalizado: paleta beige / rosado / café 🤎🎀 ----
+st.set_page_config(page_title="OCR + Audio · Mari Reinoso", page_icon="🎀", layout="centered")
+st.markdown(
+    """
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@300;400;600&display=swap');
+    .stApp {
+        background: linear-gradient(135deg, #f7efe7 0%, #f3e3df 100%);
+        color: #5c4033;
+        font-family: 'Poppins', sans-serif;
+    }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; color: #7a5c52; }
+    section[data-testid="stSidebar"] { background: #f0d9d5; }
+    .stButton>button {
+        background-color: #c98b8b; color: white; border-radius: 12px; border: none;
+    }
+    .stButton>button:hover { background-color: #a86e6e; color: #fff; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+text = " "
 
 def text_to_speech(input_language, output_language, text, tld):
     translation = translator.translate(text, src=input_language, dest=output_language)
@@ -43,8 +66,9 @@ remove_files(7)
 
 
 
-st.title("Reconocimiento Óptico de Caracteres")
-st.subheader("Elige la fuente de la imágen, esta puede venir de la cámara o cargando un archivo")
+st.title("Reconocimiento Óptico de Caracteres (OCR) 🔤🔊")
+st.caption("Lee texto de una imagen, tradúcelo y escúchalo en audio — por Mari Reinoso 🤎🎀")
+st.subheader("Elige la fuente de la imagen: puede venir de la cámara o cargando un archivo")
 
 cam_ = st.checkbox("Usar Cámara")
 
@@ -54,6 +78,7 @@ else :
    img_file_buffer = None
    
 with st.sidebar:
+      st.markdown("<h2 style=\"font-family:'Great Vibes', cursive; color:#a86e6e;\">Mari Reinoso 🎀</h2>", unsafe_allow_html=True)
       st.subheader("Procesamiento para Cámara")
       filtro = st.radio("Filtro para imagen con cámara",('Sí', 'No'))
 
@@ -79,7 +104,7 @@ if img_file_buffer is not None:
     cv2_img = cv2.imdecode(np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR)
 
     
-    if filtro == 'Con Filtro':
+    if filtro == 'Sí':
          cv2_img=cv2.bitwise_not(cv2_img)
     else:
         cv2_img= cv2_img
@@ -118,7 +143,7 @@ with st.sidebar:
           input_language = "ja"
       
       out_lang = st.selectbox(
-          "Select your output language",
+          "Seleccione el lenguaje de salida",
           ("Ingles", "Español", "Bengali", "koreano", "Mandarin", "Japones"),
       )
       if out_lang == "Ingles":
@@ -168,7 +193,7 @@ with st.sidebar:
 
       display_output_text = st.checkbox("Mostrar texto")
 
-      if st.button("convert"):
+      if st.button("Convertir a audio 🔊"):
           result, output_text = text_to_speech(input_language, output_language, text, tld)
           audio_file = open(f"temp/{result}.mp3", "rb")
           audio_bytes = audio_file.read()
